@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: book
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate
+    startCommand: gunicorn core.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: your-database-name
+          property: connectionString

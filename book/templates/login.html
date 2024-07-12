@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block start %}
+<div class="container mt-5 mx-auto col-md-4 card shadow p-5" style="background-color: #f7f7f7; border-radius: 20px;">
+	<div class="login-form">
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-success {{ message.tags }} mt-4" role="alert">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+		<form action="" method="post">
+			{% csrf_token %}
+			<h2 class="text-center" style="color: #333;">Log In ????</h2>
+			<div class="form-group">
+				<input type="text" class="form-control" name="username" placeholder="Username" required style="background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
+			</div>
+			<div class="form-group mt-4">
+				<input type="password" class="form-control" name="password" placeholder="Password" required style="background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
+			</div>
+			<div class="form-group mt-4">
+				<button class="btn btn-success btn-block">Log In ????</button>
+			</div>
+		</form>
+		<p class="text-center" style="color: #555;">Don't have an account? <a href="{% url 'register' %}" style="color: #007bff;">Create an Account </a></p>
+	</div>
+</div>
+{% endblock %}
